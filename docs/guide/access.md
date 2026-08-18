@@ -2,6 +2,10 @@
 title: 接入前置：Base URL 与 API 令牌
 description: 配置任何客户端前需要了解的地址、令牌、分组与安全事项。
 outline: [2, 3]
+dataVerifiedAt: '2026-08-18'
+dataSources:
+  groups: CodeFlow 控制台「令牌管理 → 创建令牌」
+dataSourceUrl: 'https://codeflow.asia/tokens'
 ---
 
 # 接入前置：Base URL 与 API 令牌
@@ -61,6 +65,14 @@ CodeFlow 站点地址：[https://codeflow.asia/](https://codeflow.asia/)
 - 为令牌设置「费用限制」。升级后有效期与模型／IP 限制已下线，此项为令牌层面唯一的止损手段。
 
 ## 分组与计费倍率
+
+::: info 分组数据来源与核验
+- **来源**：[CodeFlow 控制台「令牌管理」](https://codeflow.asia/tokens)的创建令牌分组选项
+- **核验范围**：分组名称与计费倍率
+- **最后核验日期**：2026 年 8 月 18 日
+
+本节分组名称与倍率已在登录后的控制台逐项核对。分组可调用模型范围、号池说明和倍率可能调整，创建令牌时请以控制台实时显示为准。
+:::
 
 创建令牌时选择的分组，决定该令牌走哪个上游号池、可调用哪些模型，以及**计费倍率**。倍率直接乘在模型单价上。
 

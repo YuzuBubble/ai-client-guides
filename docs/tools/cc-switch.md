@@ -10,9 +10,9 @@ CC Switch 为供应商配置管理工具，通过图形界面配置 Claude Code 
 
 ## 下载 CC Switch
 
-1. 点击下载链接→[传送门](https://github.com/farion1231/cc-switch/releases/latest)←，进入 CC-Switch 的 Github Release 页面
+1. 前往 [CC Switch GitHub Releases 页面](https://github.com/farion1231/cc-switch/releases/latest)，查看并下载最新版本。
 
-2. 鼠标滚动到最下方选择适合自己版本的安装包，Windows 系统推荐下载 msi 后缀的安装包进行安装，macOS 选择 dmg，Linux 按需选择 AppImage / deb / rpm
+2. 在最新版本的 **Assets** 区域选择适用于当前系统的安装包：Windows 推荐下载 `.msi` 文件，macOS 选择 `.dmg` 文件，Linux 可按需选择 AppImage、deb 或 rpm 格式。
 
 ![CC Switch Release 页面](../assets/images/image-24.png)
 
@@ -30,7 +30,7 @@ CC Switch 为供应商配置管理工具，通过图形界面配置 Claude Code 
 
 ![选择自定义配置](../assets/images/image-27.png)
 
-4. 输入我们的模板配置，并替换 `ANTHROPIC_AUTH_TOKEN` 为自己的 Api Key。此时需要添加这个 api 的名字，随便起一个。
+4. 输入模板配置，并将 `ANTHROPIC_AUTH_TOKEN` 替换为自己的 API Key，同时为该配置填写名称。
 
 ```json
 {
