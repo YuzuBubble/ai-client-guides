@@ -4,7 +4,7 @@ const base = process.env.DOCS_BASE || '/'
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: 'AI 工具接入指南',
+  title: 'CodeFlow 文档',
   description: 'CodeFlow API 的 AI 编程工具与客户端配置教程',
   appearance: 'dark',
   base,
@@ -15,8 +15,12 @@ export default defineConfig({
     ['link', { rel: 'icon', href: `${base}logo.svg`, type: 'image/svg+xml' }]
   ],
   themeConfig: {
-    logo: { src: '/logo.svg', alt: 'AI 工具接入指南' },
-    siteTitle: 'AI 工具接入指南',
+    logo: {
+      light: '/logo-light.svg',
+      dark: '/logo-dark.svg',
+      alt: 'CodeFlow'
+    },
+    siteTitle: 'CodeFlow 文档',
     nav: [
       { text: '首页', link: '/' },
       { text: '快速开始', link: '/guide/quick-start' },
@@ -26,13 +30,12 @@ export default defineConfig({
         { text: 'Codex', link: '/tools/codex' },
         { text: 'Cursor', link: '/tools/cursor' },
         { text: '更多软件', link: '/tools/cc-switch' }
-      ] },
-      { text: 'CodeFlow 官网', link: 'https://codeflow.asia/' }
+      ] }
     ],
     sidebar: [
       { text: '开始使用', items: [
-        { text: '接入前置', link: '/guide/access' },
         { text: '快速接入流程', link: '/guide/quick-start' },
+        { text: '接入前置', link: '/guide/access' },
         { text: '模型与计费', link: '/guide/models-and-billing' }
       ] },
       { text: '软件教程', collapsed: false, items: [
@@ -72,8 +75,8 @@ export default defineConfig({
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
     footer: {
-      message: '选择你的工具，按照步骤完成 CodeFlow API 接入。',
-      copyright: 'AI 工具接入指南'
+      message: 'CodeFlow API 客户端配置与故障排查文档。',
+      copyright: 'CodeFlow 文档'
     }
   }
 })

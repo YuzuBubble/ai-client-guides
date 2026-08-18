@@ -1,8 +1,50 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 import ToolGrid from './ToolGrid.vue'
 import EndpointCopy from './EndpointCopy.vue'
 import HomeHelp from './HomeHelp.vue'
+
+const landingRoot = ref<HTMLElement | null>(null)
+let revealObserver: IntersectionObserver | undefined
+let heroFrame = 0
+
+function revealImmediately(elements: Element[]) {
+  elements.forEach((element) => element.classList.add('is-motion-visible'))
+}
+
+onMounted(() => {
+  const root = landingRoot.value
+  if (!root) return
+
+  const heroItems = [...root.querySelectorAll('[data-motion="hero"]')]
+  const revealItems = [...root.querySelectorAll('[data-motion="reveal"]')]
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealImmediately([...heroItems, ...revealItems])
+    return
+  }
+
+  heroFrame = requestAnimationFrame(() => {
+    heroFrame = requestAnimationFrame(() => revealImmediately(heroItems))
+  })
+
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return
+      entry.target.classList.add('is-motion-visible')
+      revealObserver?.unobserve(entry.target)
+    })
+  }, { rootMargin: '0px 0px -48px', threshold: 0.12 })
+
+  revealItems.forEach((element) => revealObserver?.observe(element))
+})
+
+onBeforeUnmount(() => {
+  if (heroFrame) cancelAnimationFrame(heroFrame)
+  revealObserver?.disconnect()
+})
 
 const tools = [
   { name: 'Claude Code', icon: 'claude-code.png', href: '/tools/claude-code' },
@@ -17,32 +59,31 @@ const tools = [
 </script>
 
 <template>
-  <main class="cf-landing">
+  <main ref="landingRoot" class="cf-landing">
     <section class="cf-hero">
-      <div class="cf-hero-glow"></div>
       <div class="cf-container cf-hero-grid">
-        <div class="cf-hero-copy">
-          <span class="cf-badge"><i></i> 支持 Claude Code / Codex 等 AI 编程工具</span>
-          <h1>选好工具，<br /><em>几分钟完成接入</em></h1>
-          <p>创建 CodeFlow API 令牌，把客户端接口地址替换为本站地址，然后按对应教程完成模型配置。</p>
+        <div class="cf-hero-copy" data-motion="hero">
+          <span class="cf-badge"><i></i> CodeFlow API · 客户端配置文档</span>
+          <h1>CodeFlow 接入文档</h1>
+          <p>面向 Claude Code、Codex、Cursor 等 AI 编程工具，提供从令牌创建、客户端配置到请求验证的完整说明。</p>
           <div class="cf-actions">
-            <a class="cf-button cf-button-primary" :href="withBase('/guide/quick-start')">第一次使用，从这里开始</a>
-            <a class="cf-button cf-button-secondary" href="#software-guides">直接选择软件 <span>↓</span></a>
+            <a class="cf-button cf-button-primary" :href="withBase('/guide/quick-start')">开始接入</a>
+            <a class="cf-button cf-button-secondary" href="#software-guides">选择客户端 <span>↓</span></a>
           </div>
           <ul class="cf-benefits">
-            <li><span>✓</span> 无需修改项目代码</li>
-            <li><span>✓</span> 每个软件独立教程</li>
-            <li><span>✓</span> 配置完成即可验证</li>
+            <li><span>✓</span> 8 个客户端教程</li>
+            <li><span>✓</span> 两条接入线路</li>
+            <li><span>✓</span> 包含验证与排障</li>
           </ul>
         </div>
 
-        <div class="cf-terminal" aria-label="CodeFlow API 配置示意">
+        <div class="cf-terminal" data-motion="hero" aria-label="CodeFlow API 配置示意">
           <div class="cf-terminal-top">
             <span></span><span></span><span></span>
-            <small>codeflow — setup</small>
+            <small>codeflow — client setup</small>
           </div>
           <div class="cf-terminal-body">
-            <p><b>$</b> connect --provider codeflow</p>
+            <p><b>$</b> configure --provider codeflow</p>
             <div class="cf-config-line"><i></i><span>Base URL</span><code>https://codeflow.asia</code></div>
             <div class="cf-config-line"><i></i><span>API Token</span><code>sk-••••••••••••</code></div>
             <div class="cf-config-line"><i></i><span>Client</span><code>Claude Code</code></div>
@@ -55,8 +96,8 @@ const tools = [
     </section>
 
     <section class="cf-tool-ribbon" aria-label="支持的软件">
-      <div class="cf-container">
-        <p>主流 AI 工具与客户端，找到对应教程直接配置</p>
+      <div class="cf-container" data-motion="reveal">
+        <p>选择正在使用的客户端，进入对应配置文档</p>
         <div class="cf-tool-chips">
           <a v-for="tool in tools" :key="tool.name" :href="withBase(tool.href)">
             <img :src="withBase(`/tool-icons/${tool.icon}`)" alt="" />
@@ -67,30 +108,27 @@ const tools = [
     </section>
 
     <section class="cf-section" id="getting-started">
-      <div class="cf-container">
+      <div class="cf-container" data-motion="reveal">
         <header class="cf-section-heading">
-          <span>接入流程</span>
-          <h2>三步完成配置</h2>
-          <p>第一次使用也不用通读整份文档，按顺序完成下面三步即可。</p>
+          <span>开始使用</span>
+          <h2>按顺序完成接入</h2>
+          <p>依次完成令牌、客户端和验证三项配置，每一步都可在对应文档中核对。</p>
         </header>
         <div class="cf-step-grid">
           <article>
             <div class="cf-step-number">01</div>
-            <div class="cf-step-icon">⌁</div>
             <h3>创建 API 令牌</h3>
             <p>进入控制台令牌管理，为当前软件创建独立令牌并设置费用上限。</p>
             <a :href="withBase('/guide/quick-start')">查看准备步骤 →</a>
           </article>
           <article>
             <div class="cf-step-number">02</div>
-            <div class="cf-step-icon">&lt;/&gt;</div>
             <h3>填写客户端配置</h3>
             <p>选择正在使用的软件，复制 Base URL、填入令牌并选择正确模型。</p>
             <a href="#software-guides">选择软件教程 →</a>
           </article>
           <article>
             <div class="cf-step-number">03</div>
-            <div class="cf-step-icon">✓</div>
             <h3>发送请求验证</h3>
             <p>发送一条简单消息，并在使用日志中确认模型、Token 与费用记录。</p>
             <a :href="withBase('/guide/quick-start')">查看验证方法 →</a>
@@ -99,23 +137,23 @@ const tools = [
       </div>
     </section>
 
-    <section class="cf-section cf-section-alt" id="software-guides">
-      <div class="cf-container">
-        <header class="cf-section-heading cf-heading-left">
-          <span>软件教程</span>
-          <h2>选择你正在使用的软件</h2>
-          <p>每个软件都是独立教程，不需要从头阅读全部文档。</p>
+    <section class="cf-section cf-client-section" id="software-guides">
+      <div class="cf-container" data-motion="reveal">
+        <header class="cf-section-heading">
+          <span>客户端配置</span>
+          <h2>选择正在使用的客户端</h2>
+          <p>每个客户端都有独立配置说明，可直接进入对应文档。</p>
         </header>
         <ToolGrid />
       </div>
     </section>
 
     <section class="cf-section">
-      <div class="cf-container">
+      <div class="cf-container" data-motion="reveal">
         <header class="cf-section-heading">
-          <span>配置准备</span>
-          <h2>开始前准备好地址与令牌</h2>
-          <p>两条线路的账号、令牌和余额互通，可以根据网络情况随时切换。</p>
+          <span>接入参数</span>
+          <h2>准备接口地址与令牌</h2>
+          <p>两条线路共用账号、令牌和余额，可根据网络情况选择。</p>
         </header>
         <div class="cf-setup-grid">
           <article class="cf-token-card">
@@ -135,22 +173,22 @@ const tools = [
     </section>
 
     <section class="cf-section cf-section-alt">
-      <div class="cf-container">
-        <header class="cf-section-heading cf-heading-left">
+      <div class="cf-container" data-motion="reveal">
+        <header class="cf-section-heading">
           <span>常见问题</span>
-          <h2>配置卡住时，先从这里排查</h2>
-          <p>地址、令牌、分组或模型不匹配，是最常见的接入问题。</p>
+          <h2>从常见原因开始排查</h2>
+          <p>接口地址、令牌、分组或模型不匹配，是最常见的接入问题。</p>
         </header>
         <HomeHelp />
       </div>
     </section>
 
     <section class="cf-cta">
-      <div class="cf-container cf-cta-inner">
+      <div class="cf-container cf-cta-inner" data-motion="reveal">
         <div>
-          <span>准备开始了吗？</span>
-          <h2>找到你的软件，下一步直接照着配置</h2>
-          <p>教程中的令牌均为占位符，请替换成控制台创建的真实令牌。</p>
+          <span>继续配置</span>
+          <h2>从与你使用的客户端开始</h2>
+          <p>文档中的令牌均为占位符，请替换为控制台创建的真实令牌。</p>
         </div>
         <div class="cf-actions">
           <a class="cf-button cf-button-primary" :href="withBase('/tools/')">查看全部软件</a>

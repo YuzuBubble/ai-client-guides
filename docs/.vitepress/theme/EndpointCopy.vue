@@ -49,14 +49,18 @@ onBeforeUnmount(() => {
         :aria-label="`复制${endpoint.name}地址`"
         @click="copyEndpoint(endpoint.url, endpoint.key)"
       >
-        <svg v-if="copied !== endpoint.key" viewBox="0 0 16 16" aria-hidden="true">
-          <rect x="5" y="5" width="8" height="8" rx="1.5" />
-          <path d="M3 10.5V3.8c0-.44.36-.8.8-.8h6.7" />
-        </svg>
-        <svg v-else viewBox="0 0 16 16" aria-hidden="true">
-          <path d="m3.5 8.2 2.8 2.8 6.2-6.2" />
-        </svg>
-        {{ copied === endpoint.key ? '已复制' : '复制' }}
+        <Transition name="copy-feedback" mode="out-in">
+          <span :key="copied === endpoint.key ? 'copied' : 'copy'" class="endpoint-copy-feedback">
+            <svg v-if="copied !== endpoint.key" viewBox="0 0 16 16" aria-hidden="true">
+              <rect x="5" y="5" width="8" height="8" rx="1.5" />
+              <path d="M3 10.5V3.8c0-.44.36-.8.8-.8h6.7" />
+            </svg>
+            <svg v-else viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m3.5 8.2 2.8 2.8 6.2-6.2" />
+            </svg>
+            {{ copied === endpoint.key ? '已复制' : '复制' }}
+          </span>
+        </Transition>
       </button>
     </div>
     <span class="sr-copy-status" aria-live="polite">{{ copied ? '地址已复制' : '' }}</span>
