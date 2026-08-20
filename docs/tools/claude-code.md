@@ -66,7 +66,6 @@ claude
   "env": {
     "ANTHROPIC_BASE_URL": "https://codeflow.asia",
     "ANTHROPIC_AUTH_TOKEN": "sk-您的令牌",
-    "ANTHROPIC_MODEL": "claude-sonnet-5"
   }
 }
 ```
