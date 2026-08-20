@@ -34,8 +34,9 @@ const groups: TutorialGroup[] = [
     pages: [
       { name: 'Claude Code', desc: '命令行 AI 编程助手', href: '/tools/claude-code', icon: 'claude-code.png' },
       { name: 'Codex', desc: 'CLI 与 Desktop', href: '/tools/codex', icon: 'codex.svg' },
+      { name: 'Cursor-Pro', desc: '使用原生 BYOK 配置入口', href: '/tools/cursor', icon: 'cursor.svg' },
+      { name: 'Cursor-NoPro', desc: '通过本地网关接入模型', href: '/tools/cursor-nopro', icon: 'cursor.svg' },
       { name: 'CC Switch', desc: '供应商快速切换', href: '/tools/cc-switch', icon: 'cc-switch.png' },
-      { name: 'Cursor', desc: '编辑器 API 配置', href: '/tools/cursor', icon: 'cursor.svg' },
       { name: 'Cherry Studio', desc: '桌面多模型客户端', href: '/tools/cherry-studio', icon: 'cherry-studio.png' },
       { name: 'Kilo Code', desc: 'VS Code 插件', href: '/tools/kilo-code', icon: 'kilo-code.svg' },
       { name: 'OpenCode', desc: '终端编程助手', href: '/tools/opencode', icon: 'opencode.svg' },

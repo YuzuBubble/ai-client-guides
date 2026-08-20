@@ -1013,9 +1013,10 @@ body {
 .outline-top-button {
   display: flex;
   width: 100%;
+  height: 32px;
   align-items: center;
   justify-content: space-between;
-  padding: 3px 0 9px;
+  padding: 0;
   border: 0;
   color: var(--vp-c-text-2);
   background: transparent;

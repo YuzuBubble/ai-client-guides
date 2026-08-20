@@ -49,8 +49,9 @@ onBeforeUnmount(() => {
 const tools = [
   { name: 'Claude Code', icon: 'claude-code.png', href: '/tools/claude-code' },
   { name: 'Codex', icon: 'codex.svg', href: '/tools/codex' },
+  { name: 'Cursor-Pro', icon: 'cursor.svg', href: '/tools/cursor' },
+  { name: 'Cursor-NoPro', icon: 'cursor.svg', href: '/tools/cursor-nopro' },
   { name: 'CC Switch', icon: 'cc-switch.png', href: '/tools/cc-switch' },
-  { name: 'Cursor', icon: 'cursor.svg', href: '/tools/cursor' },
   { name: 'Cherry Studio', icon: 'cherry-studio.png', href: '/tools/cherry-studio' },
   { name: 'Kilo Code', icon: 'kilo-code.svg', href: '/tools/kilo-code' },
   { name: 'OpenCode', icon: 'opencode.svg', href: '/tools/opencode' },
@@ -65,13 +66,13 @@ const tools = [
         <div class="cf-hero-copy" data-motion="hero">
           <span class="cf-badge"><i></i> CodeFlow API · 客户端配置文档</span>
           <h1>CodeFlow 接入文档</h1>
-          <p>面向 Claude Code、Codex、Cursor 等 AI 编程工具，提供从令牌创建、客户端配置到请求验证的完整说明。</p>
+          <p>面向 Claude Code、Codex、Cursor 等 AI 编程工具，提供从创建令牌、配置客户端到验证连接的完整说明。</p>
           <div class="cf-actions">
             <a class="cf-button cf-button-primary" :href="withBase('/guide/quick-start')">开始接入</a>
             <a class="cf-button cf-button-secondary" href="#software-guides">选择客户端 <span>↓</span></a>
           </div>
           <ul class="cf-benefits">
-            <li><span>✓</span> 8 个客户端教程</li>
+            <li><span>✓</span> 9 个客户端教程</li>
             <li><span>✓</span> 两条接入线路</li>
             <li><span>✓</span> 包含验证与排障</li>
           </ul>
@@ -112,7 +113,7 @@ const tools = [
         <header class="cf-section-heading">
           <span>开始使用</span>
           <h2>按顺序完成接入</h2>
-          <p>依次完成令牌、客户端和验证三项配置，每一步都可在对应文档中核对。</p>
+          <p>依次完成令牌创建、客户端配置和连接验证，并在对应文档中核对每一步。</p>
         </header>
         <div class="cf-step-grid">
           <article>
@@ -124,7 +125,7 @@ const tools = [
           <article>
             <div class="cf-step-number">02</div>
             <h3>填写客户端配置</h3>
-            <p>选择正在使用的软件，复制 Base URL、填入令牌并选择正确模型。</p>
+            <p>选择正在使用的软件，复制 Base URL、填入令牌并选择当前可用的模型。</p>
             <a href="#software-guides">选择软件教程 →</a>
           </article>
           <article>
@@ -166,7 +167,7 @@ const tools = [
           <article class="cf-url-card">
             <div class="cf-card-label">BASE URL</div>
             <EndpointCopy />
-            <div class="cf-v1-warning"><b>/v1 规则：</b>Claude Code、Cherry Studio、OpenClaw 不带；Cursor、Kilo Code、OpenCode、Codex 需要带。</div>
+            <div class="cf-v1-warning"><b>/v1 规则：</b>Claude Code、Cherry Studio、Cursor-NoPro（Claude）、OpenClaw 不带；Cursor-Pro、Cursor-NoPro（GPT）、Kilo Code、OpenCode、Codex 需要带。</div>
           </article>
         </div>
       </div>
@@ -177,7 +178,7 @@ const tools = [
         <header class="cf-section-heading">
           <span>常见问题</span>
           <h2>从常见原因开始排查</h2>
-          <p>接口地址、令牌、分组或模型不匹配，是最常见的接入问题。</p>
+          <p>接口地址、令牌、分组或模型不匹配，均属于常见的接入问题。</p>
         </header>
         <HomeHelp />
       </div>
@@ -187,8 +188,8 @@ const tools = [
       <div class="cf-container cf-cta-inner" data-motion="reveal">
         <div>
           <span>继续配置</span>
-          <h2>从与你使用的客户端开始</h2>
-          <p>文档中的令牌均为占位符，请替换为控制台创建的真实令牌。</p>
+          <h2>从所使用的客户端开始</h2>
+          <p>文档中的令牌均为占位符，请替换为您在控制台创建的 CodeFlow 令牌。</p>
         </div>
         <div class="cf-actions">
           <a class="cf-button cf-button-primary" :href="withBase('/tools/')">查看全部软件</a>

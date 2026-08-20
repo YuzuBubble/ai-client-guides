@@ -5,8 +5,8 @@ const base = process.env.DOCS_BASE || '/'
 export default defineConfig({
   lang: 'zh-CN',
   title: 'CodeFlow 文档',
-  description: 'CodeFlow API 的 AI 编程工具与客户端配置教程',
-  appearance: 'dark',
+  description: 'CodeFlow API 的 AI 编程工具与客户端配置指南',
+  appearance: 'force-dark',
   base,
   lastUpdated: true,
   head: [
@@ -15,11 +15,7 @@ export default defineConfig({
     ['link', { rel: 'icon', href: `${base}logo.svg`, type: 'image/svg+xml' }]
   ],
   themeConfig: {
-    logo: {
-      light: '/logo-light.svg',
-      dark: '/logo-dark.svg',
-      alt: 'CodeFlow'
-    },
+    logo: { src: '/logo-dark.svg', alt: 'CodeFlow' },
     siteTitle: 'CodeFlow 文档',
     nav: [
       { text: '首页', link: '/' },
@@ -28,9 +24,11 @@ export default defineConfig({
         { text: '全部软件', link: '/tools/' },
         { text: 'Claude Code', link: '/tools/claude-code' },
         { text: 'Codex', link: '/tools/codex' },
-        { text: 'Cursor', link: '/tools/cursor' },
-        { text: '更多软件', link: '/tools/cc-switch' }
-      ] }
+        { text: 'Cursor-Pro', link: '/tools/cursor' },
+        { text: 'Cursor-NoPro', link: '/tools/cursor-nopro' },
+        { text: 'CC Switch', link: '/tools/cc-switch' }
+      ] },
+      { text: 'CodeFlow CLI', link: '/guide/codeflow-cli' }
     ],
     sidebar: [
       { text: '开始使用', items: [
@@ -42,14 +40,16 @@ export default defineConfig({
         { text: '全部软件', link: '/tools/' },
         { text: 'Claude Code', link: '/tools/claude-code' },
         { text: 'Codex CLI 与 Desktop', link: '/tools/codex' },
+        { text: 'Cursor-Pro', link: '/tools/cursor' },
+        { text: 'Cursor-NoPro', link: '/tools/cursor-nopro' },
         { text: 'CC Switch', link: '/tools/cc-switch' },
-        { text: 'Cursor', link: '/tools/cursor' },
         { text: 'Cherry Studio', link: '/tools/cherry-studio' },
         { text: 'Kilo Code', link: '/tools/kilo-code' },
         { text: 'OpenCode', link: '/tools/opencode' },
         { text: 'OpenClaw', link: '/tools/openclaw' }
       ] },
       { text: '更多', items: [
+        { text: 'CodeFlow 命令行工具', link: '/guide/codeflow-cli' },
         { text: '控制台与支持', link: '/guide/console' }
       ] }
     ],

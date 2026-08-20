@@ -2,7 +2,7 @@
 
 ## 文件要求
 
-- 每个软件一个 Markdown 文件，放在 `docs/tools/`。
+- 每个软件或独立配置变体使用一个 Markdown 文件，放在 `docs/tools/`；例如 Cursor 的 Pro 与 NoPro 方案分别维护。
 - 文件名使用小写英文与连字符，例如 `my-tool.md`。
 - 一级标题写软件名称，后续步骤使用二级、三级标题。
 - 截图放在 `docs/assets/images/`，使用有意义的英文文件名。

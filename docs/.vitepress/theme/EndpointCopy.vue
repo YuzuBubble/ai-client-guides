@@ -5,8 +5,8 @@ const copied = ref('')
 let timer: ReturnType<typeof setTimeout> | undefined
 
 const endpoints = [
-  { key: 'china', name: '中国优化线路', url: 'https://codeflow.asia', note: '中国用户日常使用' },
-  { key: 'global', name: '全球加速线路', url: 'https://cdn.codeflow.asia', note: '团队、企业或境外网络' }
+  { key: 'china', name: '中国优化线路', url: 'https://codeflow.asia', note: '适用于中国大陆网络' },
+  { key: 'global', name: '全球加速线路', url: 'https://cdn.codeflow.asia', note: '适用于境外或跨区域网络' }
 ]
 
 async function copyEndpoint(url: string, key: string) {

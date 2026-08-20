@@ -4,12 +4,13 @@ import { withBase } from 'vitepress'
 const tools = [
   { name: 'Claude Code', icon: 'claude-code.png', href: '/tools/claude-code', desc: '命令行 AI 编程助手', protocol: 'Anthropic' },
   { name: 'Codex', icon: 'codex.svg', href: '/tools/codex', desc: 'CLI 与 Desktop 配置', protocol: 'OpenAI' },
+  { name: 'Cursor-Pro', icon: 'cursor.svg', href: '/tools/cursor', desc: '使用原生 BYOK 配置入口', protocol: 'OpenAI' },
+  { name: 'Cursor-NoPro', icon: 'cursor.svg', href: '/tools/cursor-nopro', desc: '通过本地网关接入模型', protocol: '第三方网关' },
   { name: 'CC Switch', icon: 'cc-switch.png', href: '/tools/cc-switch', desc: '快速切换 Claude 供应商', protocol: '导入配置' },
-  { name: 'Cursor', icon: 'cursor.svg', href: '/tools/cursor', desc: '编辑器自定义模型接入', protocol: 'OpenAI' },
   { name: 'Cherry Studio', icon: 'cherry-studio.png', href: '/tools/cherry-studio', desc: '桌面多模型客户端', protocol: 'Anthropic' },
-  { name: 'Kilo Code', icon: 'kilo-code.svg', href: '/tools/kilo-code', desc: 'VS Code 智能编程插件', protocol: 'OpenAI Compatible' },
+  { name: 'Kilo Code', icon: 'kilo-code.svg', href: '/tools/kilo-code', desc: 'VS Code 智能编程插件', protocol: 'OpenAI 兼容' },
   { name: 'OpenCode', icon: 'opencode.svg', href: '/tools/opencode', desc: '终端原生编程助手', protocol: 'Anthropic' },
-  { name: 'OpenClaw', icon: 'openclaw.svg', href: '/tools/openclaw', desc: '本地智能体与网关', protocol: 'Messages' }
+  { name: 'OpenClaw', icon: 'openclaw.svg', href: '/tools/openclaw', desc: '本地智能体与网关', protocol: 'Anthropic Messages' }
 ]
 </script>
 
