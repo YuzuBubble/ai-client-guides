@@ -74,6 +74,17 @@ claude
 
 将 `ANTHROPIC_MODEL` 设置为模型广场中当前可用的 Claude 模型 ID。模型 ID 变化时，只需更新该字段，或在会话内使用 `/model <模型 ID>` 临时切换。
 
+若要避免每次打开新窗口时都输入 `account`，可在用户主目录下的 `.claude.json` 文件中添加以下配置项：
+
+|操作系统|路径|
+|---|---|
+|Windows|`C:\Users\用户名\.claude.json`|
+|macOS / Linux|`~/.claude.json`|
+
+```json
+  "hasCompletedOnboarding": true
+```
+
 ## 4. 保存并启用
 
 保存 `settings.json` 后，完全退出正在运行的 Claude Code，再重新打开终端。此处 Base URL 不带 `/v1`；Claude Code 会按照 Anthropic 接口约定处理后续路径。

@@ -42,7 +42,7 @@ dataSourceUrl: 'https://codeflow.asia/#packages'
 
 前往 [软件教程](../tools/index.md)，根据所使用的客户端填写 Base URL 和令牌。
 
-如果使用 Claude Code 或 Codex，也可以通过 [CodeFlow 命令行工具](./codeflow-cli.md#一键配置-claude-code-与-codex) 自动写入配置。
+如果使用 Claude Code 或 Codex，也可以通过 [CodeFlow 命令行工具](./codeflow-cli.md#client-auto-config) 自动写入配置。
 
 ### 5. 验证
 

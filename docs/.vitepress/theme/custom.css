@@ -129,6 +129,9 @@ body {
 
 /* Documentation content */
 .vp-doc { letter-spacing: 0; }
+.vp-doc :is(h2, h3, h4, h5, h6)[id] {
+  scroll-margin-top: calc(var(--vp-nav-height) + 16px);
+}
 .vp-doc h1 {
   font-size: 38px;
   font-weight: 650;

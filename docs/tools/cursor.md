@@ -1,10 +1,10 @@
 ---
-title: Cursor-Pro
-description: 使用 Cursor Pro 原生配置 OpenAI API Key、Base URL 与模型。
+title: Cursor
+description: 在 Cursor 中配置 OpenAI API Key、Base URL 与模型。
 outline: [2, 3]
 ---
 
-# Cursor-Pro 配置指南
+# Cursor 配置指南
 
 *最后更新：2026 年 8 月 20 日 02:55*
 
